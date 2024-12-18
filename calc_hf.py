@@ -20,6 +20,11 @@ def arg_reader():
         "outfile",
         help="The prefix for the outfile"
     )
+    arg_parser.add_argument(
+        "-v",
+        help="Verbose mode, prints progress if set",
+        action="store_true"
+    )
     return arg_parser.parse_args()
 
 
@@ -85,7 +90,11 @@ def main():
     """ main function """
     args = arg_reader()
     freq_gen = parse_frqx(args.infile)
-    freqs = [calc_het_corr_freqs(line) for line in freq_gen]
+    n_lines = len(freq_gen)
+    for i, line in enumerate(freq_gen):
+        if args.v:
+            print(f"processing line {i}/{n_lines}", end="\r")
+        freqs.append(calc_het_corr_freqs(line))
     write_tsv(args.outfile, freqs)
 
 
