@@ -46,6 +46,7 @@ def calc_het_corr_freqs(line: list[str | int]) -> dict[str, str | int]:
     :return: dioctionary containing variant id, het adjusted maf and het
         adjusted missing data
     """
+    print(line)
     var_id = line[1]
     hom1 = int(line[4])
     het = int(line[5])
