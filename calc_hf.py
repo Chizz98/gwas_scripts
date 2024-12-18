@@ -90,6 +90,7 @@ def main():
     """ main function """
     args = arg_reader()
     freq_gen = parse_frqx(args.infile)
+    freqs = []
     for i, line in enumerate(freq_gen):
         if args.v:
             print(f"processing line {i}", end="\r")
