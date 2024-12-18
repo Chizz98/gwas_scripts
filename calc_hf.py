@@ -46,17 +46,19 @@ def calc_het_corr_freqs(line: list[str | int]) -> dict[str, str | int]:
     :return: dioctionary containing variant id, het adjusted maf and het
         adjusted missing data
     """
-    print(line)
     var_id = line[1]
     hom1 = int(line[4])
     het = int(line[5])
     hom2 = int(line[6])
     missing = int(line[9])
+
+    missing_f = missing / (hom1 + hom2 + het + missing)
+    het_adjusted_missing_f = (het + missing) / (hom1 + hom2 + het + missing)
     minor_hom = min(hom1, hom2)
     maf = (minor_hom * 2 + het) / ((hom1 + hom2 + het) * 2)
-    het_adjusted_maf = minor_hom * 2 / ((hom1 + hom2) * 2)
-    het_adjusted_missing_f = (het + missing) / (hom1 + hom2 + het + missing)
-    missing_f = missing / (hom1 + hom2 + het + missing)
+
+    # If only het and missing, set corrected maf to 0
+    het_adjusted_maf = 0 if het_adjusted_missing_f == 1 else minor_hom * 2 / ((hom1 + hom2) * 2)
     return {"ID": var_id, "CORR_MAF": het_adjusted_maf, "MAF": maf,
             "CORR_MISS_FRQ": het_adjusted_missing_f, "MISS_FRQ": missing_f}
 
