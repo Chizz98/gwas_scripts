@@ -91,10 +91,14 @@ def main():
     args = arg_reader()
     freq_gen = parse_frqx(args.infile)
     freqs = []
-    for i, line in enumerate(freq_gen):
-        if args.v:
+    if args.v:
+        for i, line in enumerate(freq_gen):
             print(f"processing line {i}", end="\r")
-        freqs.append(calc_het_corr_freqs(line))
+            freqs.append(calc_het_corr_freqs(line))
+        print("all lines processed\nwriting outfile")
+    else:
+        for line in freq_gen:
+            freqs.append(calc_het_corr_freqs(line))
     write_tsv(args.outfile, freqs)
 
 
