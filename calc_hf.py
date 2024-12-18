@@ -90,7 +90,7 @@ def main():
     """ main function """
     args = arg_reader()
     freq_gen = parse_frqx(args.infile)
-    n_lines = len(freq_gen)
+    n_lines = sum(1 for x in freq_gen)
     for i, line in enumerate(freq_gen):
         if args.v:
             print(f"processing line {i}/{n_lines}", end="\r")
