@@ -63,10 +63,13 @@ def calc_het_corr_freqs(line: list[str | int]) -> dict[str, str | int]:
 
     # If only missing, set maf to NA
     maf = "NA" if missing_f == 1 else (minor_hom * 2 + het) / ((hom1 + hom2 + het) * 2)
+    # If only missing, set het_f to NA
+    het_f = "NA" if missing_f == 1 else het / (hom1 + hom2 + het)
     # If only het and missing, set corrected maf to NA
     het_adjusted_maf = "NA" if het_adjusted_missing_f == 1 else minor_hom * 2 / ((hom1 + hom2) * 2)
     return {"ID": var_id, "CORR_MAF": het_adjusted_maf, "MAF": maf,
-            "CORR_MISS_FRQ": het_adjusted_missing_f, "MISS_FRQ": missing_f}
+            "CORR_MISS_FRQ": het_adjusted_missing_f, "MISS_FRQ": missing_f,
+            "HET_FRQ": het_f}
 
 
 def write_tsv(outfile: str, lines: list[dict]) -> None:
