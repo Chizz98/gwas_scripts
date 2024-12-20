@@ -1,3 +1,6 @@
+from typing import Generator
+
+
 def parse_tsv(filename: str) -> Generator[list[str, ...], None, None]:
     """ Parses a tsv file and generates the output line by line
 
