@@ -31,8 +31,8 @@ def arg_reader():
 def calc_het_corr_freqs(line: list[str | int]) -> dict[str, str | int]:
     """ Calculates false heterozygote corrected missing and minor allele frequencies
 
-    :param line: A line from a .frqx file
-    :return: dioctionary containing variant id, het adjusted maf and het
+    :param line: A parsed line from a .frqx file
+    :return: dictionary containing variant id, het adjusted maf and het
         adjusted missing data
     """
     var_id = line[1]
