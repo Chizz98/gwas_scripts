@@ -64,7 +64,9 @@ def main():
     if args.v:
         for i, line in enumerate(freq_gen):
             print(f"processing line {i}", end="\r")
-            freqs.append(calc_het_corr_freqs(line))
+            line_dict = calc_het_corr_freqs(line)
+            if line_dict["ID"] != ".":
+                freqs.append(line_dict)
         print("all lines processed\nwriting outfile")
     else:
         for line in freq_gen:

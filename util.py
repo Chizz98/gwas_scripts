@@ -31,7 +31,6 @@ def write_tsv(outfile: str, lines: list[dict], write_head=True) -> None:
         headers = lines[0].keys()
         outfile_conn.write("#" + "\t".join(headers) + "\n")
     for line in lines:
-        if line["ID"] != ".":
-            values = [str(val) for val in line.values()]
-            outfile_conn.write("\t".join(values) + "\n")
+        values = [str(val) for val in line.values()]
+        outfile_conn.write("\t".join(values) + "\n")
     outfile_conn.close()
