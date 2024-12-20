@@ -17,17 +17,19 @@ def parse_tsv(filename: str) -> Generator[list[str, ...], None, None]:
     infile_conn.close()
 
 
-def write_tsv(outfile: str, lines: list[dict]) -> None:
+def write_tsv(outfile: str, lines: list[dict], write_head=True) -> None:
     """ Writes a tsv from a dictionary
 
     :param outfile: The name of the outfile
     :param lines: the lines to write as dictionaries with headers as key and
         value as value
+    :param write_head: If true writes dict keys as first line, started with a #
     :return: None, writes outfile
     """
     outfile_conn = open(outfile, "w")
-    headers = lines[0].keys()
-    outfile_conn.write("#" + "\t".join(headers) + "\n")
+    if write_head:
+        headers = lines[0].keys()
+        outfile_conn.write("#" + "\t".join(headers) + "\n")
     for line in lines:
         if line["ID"] != ".":
             values = [str(val) for val in line.values()]
