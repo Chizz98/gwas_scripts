@@ -37,7 +37,7 @@ def format_markers(line: list[str | int]) -> dict[str, str | int]:
     chr_id = line[0]
     var_id = line[1]
     var_start = int(line[3])
-    var_end = var_start + 1
+    var_end = var_start
     return {"VAR_ID": var_id, "CHR_ID": chr_id, "START": var_start,
             "END": var_end}
 
