@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import argparse as arg
-from typing import Generator
 from util import parse_tsv, write_tsv
 
 
