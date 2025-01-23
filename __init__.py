@@ -1,4 +1,5 @@
 #!/usr/bin/python3
-import calc_hf
-import create_marker_file
-import permute_fam
+from .calc_hf import *
+from .create_marker_file import *
+from .permute_fam import *
+from .util import *
