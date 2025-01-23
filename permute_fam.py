@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import pandas as pd
 import numpy as np
 import argparse as arg
@@ -42,7 +41,7 @@ def main():
     n_permute = args.permute_n
     out_name = args.out_name
 
-    fam_file = pd.read_table(fam_file, header=None, sep=r"\s+")
+    fam_file = pd.read_table(fam_file, header=None, delim_whitespace=True)
     fam_base = fam_file.iloc[:, 0:5]
     phenotype_col = fam_file.iloc[:, pheno_of_interest].copy()
     non_na = phenotype_col.dropna().tolist()
