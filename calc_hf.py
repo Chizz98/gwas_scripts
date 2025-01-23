@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import argparse as arg
-from .util import parse_tsv, write_tsv
+from util import parse_tsv, write_tsv
 
 
 def arg_reader():
